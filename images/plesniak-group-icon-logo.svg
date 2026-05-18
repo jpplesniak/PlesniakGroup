@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <rect width="800" height="800" fill="none"/>
+  <circle cx="400" cy="400" r="330" fill="none" stroke="#D8A000" stroke-width="18"/>
+  <text x="335" y="450" font-family="DejaVu Serif, Georgia, Times New Roman, serif" font-size="430" font-weight="700" fill="#111111">P</text>
+  <text x="455" y="590" font-family="DejaVu Serif, Georgia, Times New Roman, serif" font-size="385" font-weight="700" fill="#111111">G</text>
+</svg>

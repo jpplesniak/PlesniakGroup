@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="520" viewBox="0 0 1800 520">
+  <rect width="1800" height="520" fill="none"/>
+  <g id="icon" transform="translate(70,70)">
+    <circle cx="190" cy="190" r="168" fill="none" stroke="#D8A000" stroke-width="10"/>
+    <text x="155" y="218" font-family="DejaVu Serif, Georgia, Times New Roman, serif" font-size="235" font-weight="700" fill="#111111">P</text>
+    <text x="215" y="295" font-family="DejaVu Serif, Georgia, Times New Roman, serif" font-size="210" font-weight="700" fill="#111111">G</text>
+  </g>
+  <line x1="525" y1="84" x2="525" y2="430" stroke="#111111" stroke-width="5"/>
+  <g id="wordmark" transform="translate(600,72)">
+    <text x="0" y="110" font-family="DejaVu Serif, Georgia, Times New Roman, serif" font-size="108" font-weight="700" letter-spacing="18" fill="#111111">PLESNIAK</text>
+    <text x="0" y="245" font-family="DejaVu Serif, Georgia, Times New Roman, serif" font-size="108" font-weight="700" letter-spacing="18" fill="#111111">GROUP</text>
+    <text x="2" y="335" font-family="DejaVu Serif, Georgia, Times New Roman, serif" font-size="42" font-weight="400" fill="#111111">Preserving What Works. Building What’s Next.</text>
+    <line x1="2" y1="380" x2="158" y2="380" stroke="#D8A000" stroke-width="7" stroke-linecap="square"/>
+  </g>
+</svg>
