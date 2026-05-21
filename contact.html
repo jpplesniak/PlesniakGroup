@@ -61,11 +61,11 @@
                     <div class="contact-reasons">
                         <h3>Reach Out If You...</h3>
                         <ul>
-                            <li>Own a cash-generating business and are exploring options</li>
-                            <li>Are considering retirement or transition</li>
-                            <li>Want to understand your business's value</li>
-                            <li>Are looking for a partner who respects your legacy</li>
-                            <li>Have questions about our acquisition process</li>
+                            <li>✓ Own a cash-generating business and are exploring options</li>
+                            <li>✓ Are considering retirement or transition</li>
+                            <li>✓ Want to understand your business's value</li>
+                            <li>✓ Are looking for a partner who respects your legacy</li>
+                            <li>✓ Have questions about our acquisition process</li>
                         </ul>
                     </div>
                 </div>
@@ -79,14 +79,15 @@
                             <input type="text" id="name" name="name" required>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="emailGroup">
                             <label for="email">Email Address *</label>
                             <input type="email" id="email" name="email" required>
+                            <span class="error-message" id="emailError"></span>
                         </div>
 
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone">
+                            <input type="tel" id="phone" name="phone" placeholder="123-456-7890">
                         </div>
 
                         <div class="form-group">
@@ -97,13 +98,6 @@
                         <div class="form-group">
                             <label for="message">Message *</label>
                             <textarea id="message" name="message" rows="6" required placeholder="Tell us a bit about your business or what you'd like to discuss..."></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="confidential" name="confidential" required>
-                                <span>I understand that all information shared will be kept confidential *</span>
-                            </label>
                         </div>
 
                         <button type="submit" class="btn-primary">Send Message</button>

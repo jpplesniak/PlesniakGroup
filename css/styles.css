@@ -752,6 +752,21 @@ p {
     resize: vertical;
 }
 
+.form-group.error input {
+    border-color: #dc3545;
+}
+
+.error-message {
+    display: none;
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 5px;
+}
+
+.form-group.error .error-message {
+    display: block;
+}
+
 .checkbox-label {
     display: flex;
     align-items: flex-start;

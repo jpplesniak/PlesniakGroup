@@ -34,6 +34,58 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Email validation on blur
+    const emailInput = document.getElementById('email');
+    const emailGroup = document.getElementById('emailGroup');
+    const emailError = document.getElementById('emailError');
+    
+    if (emailInput) {
+        emailInput.addEventListener('blur', function() {
+            const email = this.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (email && !emailRegex.test(email)) {
+                emailGroup.classList.add('error');
+                emailError.textContent = 'Please enter a valid email address (e.g., name@example.com)';
+            } else {
+                emailGroup.classList.remove('error');
+                emailError.textContent = '';
+            }
+        });
+        
+        emailInput.addEventListener('input', function() {
+            if (emailGroup.classList.contains('error')) {
+                const email = this.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (emailRegex.test(email)) {
+                    emailGroup.classList.remove('error');
+                    emailError.textContent = '';
+                }
+            }
+        });
+    }
+    
+    // Phone number auto-formatting
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            let value = this.value.replace(/\D/g, ''); // Remove all non-digits
+            
+            if (value.length > 10) {
+                value = value.slice(0, 10); // Limit to 10 digits
+            }
+            
+            // Format as XXX-XXX-XXXX
+            if (value.length >= 6) {
+                this.value = value.slice(0, 3) + '-' + value.slice(3, 6) + '-' + value.slice(6);
+            } else if (value.length >= 3) {
+                this.value = value.slice(0, 3) + '-' + value.slice(3);
+            } else {
+                this.value = value;
+            }
+        });
+    }
+
     // Contact Form Handling with Formspree
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
@@ -44,16 +96,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
-            const confidential = document.getElementById('confidential').checked;
 
-            if (!name || !email || !message || !confidential) {
-                showFormMessage('Please fill in all required fields and agree to the confidentiality statement.', 'error');
+            if (!name || !email || !message) {
+                showFormMessage('Please fill in all required fields.', 'error');
                 return;
             }
 
             // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
+                emailGroup.classList.add('error');
+                emailError.textContent = 'Please enter a valid email address (e.g., name@example.com)';
                 showFormMessage('Please enter a valid email address.', 'error');
                 return;
             }
@@ -72,6 +125,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (response.ok) {
                     showFormMessage('Thank you for your inquiry. Responses can be expected within 48 hours.', 'success');
                     contactForm.reset();
+                    emailGroup.classList.remove('error');
+                    emailError.textContent = '';
                 } else {
                     return response.json().then(data => {
                         throw new Error(data.error || 'Form submission failed');
