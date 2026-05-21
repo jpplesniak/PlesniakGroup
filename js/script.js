@@ -34,61 +34,54 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Contact Form Handling
+    // Contact Form Handling with Formspree
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                company: document.getElementById('company').value,
-                message: document.getElementById('message').value,
-                confidential: document.getElementById('confidential').checked
-            };
-
             // Validate form
-            if (!formData.name || !formData.email || !formData.message || !formData.confidential) {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const confidential = document.getElementById('confidential').checked;
+
+            if (!name || !email || !message || !confidential) {
                 showFormMessage('Please fill in all required fields and agree to the confidentiality statement.', 'error');
                 return;
             }
 
             // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(formData.email)) {
+            if (!emailRegex.test(email)) {
                 showFormMessage('Please enter a valid email address.', 'error');
                 return;
             }
 
-            // Simulate form submission (in production, this would send to a server)
-            // For now, we'll just show a success message
-            showFormMessage('Thank you for your message! We will respond within 24-48 hours. All information is kept strictly confidential.', 'success');
+            // Submit to Formspree
+            const formData = new FormData(contactForm);
             
-            // Reset form
-            contactForm.reset();
-            
-            // In a real implementation, you would send this data to your email service or backend
-            // Example with a form service like Formspree or your own backend:
-            /*
-            fetch('YOUR_FORM_ENDPOINT', {
+            fetch(contactForm.action, {
                 method: 'POST',
+                body: formData,
                 headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
+                    'Accept': 'application/json'
+                }
             })
-            .then(response => response.json())
-            .then(data => {
-                showFormMessage('Thank you for your message! We will respond within 24-48 hours.', 'success');
-                contactForm.reset();
+            .then(response => {
+                if (response.ok) {
+                    showFormMessage('Thank you for your inquiry. Responses can be expected within 48 hours.', 'success');
+                    contactForm.reset();
+                } else {
+                    return response.json().then(data => {
+                        throw new Error(data.error || 'Form submission failed');
+                    });
+                }
             })
             .catch(error => {
-                showFormMessage('There was an error sending your message. Please try again or email us directly.', 'error');
+                showFormMessage('There was an error sending your message. Please try again or contact us directly.', 'error');
+                console.error('Form submission error:', error);
             });
-            */
         });
     }
 });
